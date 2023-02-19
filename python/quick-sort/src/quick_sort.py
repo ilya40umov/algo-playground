@@ -23,8 +23,9 @@ def sort(values: List[Any]) -> None:
             if values[j] <= pivot_value:
                 swap(i, j)
                 i += 1
-                j -= 1
-        swap(start, j)
+            j -= 1
+        if values[start] > values[j]:
+            swap(start, j)
 
         sort_slice(start, j)
         sort_slice(j + 1, end)
