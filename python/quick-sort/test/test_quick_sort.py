@@ -2,7 +2,7 @@ import unittest
 from src import quick_sort
 
 
-class TestClass(unittest.TestCase):
+class QuickSortTest(unittest.TestCase):
     def test_sort_works_for_empty_list(self):
         l = []
         quick_sort.sort(l)
