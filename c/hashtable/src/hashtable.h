@@ -1,8 +1,8 @@
 #ifndef HASHTABLE_H
 #define HASHTABLE_H
 
-#include <stdlib.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 typedef struct ht_hashtable ht_hashtable;
 

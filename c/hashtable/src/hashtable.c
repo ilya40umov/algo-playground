@@ -1,7 +1,7 @@
-#include <stdlib.h>
-#include <stdbool.h>
-#include <string.h>
 #include "hashtable.h"
+#include <stdbool.h>
+#include <stdlib.h>
+#include <string.h>
 
 typedef struct ht_node ht_node;
 
@@ -25,7 +25,7 @@ bool ht_init(ht_hashtable **t_ptr, size_t capacity) {
     return false;
   }
   t->capacity = capacity;
-  t->nodes = calloc(capacity, sizeof(ht_node*));
+  t->nodes = calloc(capacity, sizeof(ht_node *));
   if (t->nodes == NULL) {
     free(t);
     return false;
@@ -57,7 +57,7 @@ bool ht_free(ht_hashtable **t_ptr) {
 
 bool ht_put(ht_hashtable *t, const char *key, const char *value) {
   unsigned int code = hash(key) % t->capacity;
-  
+
   if (t->nodes[code] == NULL) {
     ht_node *node = calloc(1, sizeof(ht_node));
     if (node == NULL) {
@@ -68,14 +68,14 @@ bool ht_put(ht_hashtable *t, const char *key, const char *value) {
     t->nodes[code] = node;
     return true;
   }
-  
+
   ht_node *cur = t->nodes[code];
   while (true) {
     if (strcmp(cur->value, key) == 0) {
       return true;
     }
     if (cur->next == NULL) {
-      break; 
+      break;
     }
     cur = cur->next;
   }
@@ -132,8 +132,7 @@ bool ht_contains(ht_hashtable *t, const char *key) {
 }
 
 // http://www.cse.yorku.ca/~oz/hash.html
-static unsigned long hash(const char *str)
-{
+static unsigned long hash(const char *str) {
   unsigned long hash = 5381;
   unsigned int c;
   while ((c = *str++)) {
