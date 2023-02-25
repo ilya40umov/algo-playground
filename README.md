@@ -11,6 +11,7 @@ Repo containing experiments with common algorithms and data structures.
 ## Implementations in Python
 
 * [binary-search](python/binary-search)
+* [deque](python/deque)
 * [hashtable](python/hashtable)
 * [quick-sort](python/quick-sort)
 * [selection-sort](python/selection-sort)
