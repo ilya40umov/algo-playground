@@ -1,54 +1,53 @@
-from dataclasses import dataclass
-from typing import List, Optional
+from typing import Set, List, Optional
 from collections import deque
 
 
-@dataclass
-class Vertex:
-    id: str
-    neighbour_ids: List[str]
-
-
-@dataclass
 class Graph:
-    vertices: List[Vertex]
+    def __init__(self, vertices: Set[str]):
+        self.vertices = set(vertices)
+        self.neighbours_by_vertex = {vertex: set() for vertex in vertices}
 
-    def find_shortest_path(self, from_id: str, to_id: str) -> Optional[List[str]]:
-        if from_id == to_id:
-            return [to_id]
+    def add_edge(self, from_vertex: str, to_vertex: str):
+        if from_vertex not in self.vertices or to_vertex not in self.vertices:
+            return
+        self.neighbours_by_vertex[from_vertex].add(to_vertex)
+        self.neighbours_by_vertex[to_vertex].add(from_vertex)
 
-        neighbour_ids_by_id = {v.id: v.neighbour_ids for v in self.vertices}
+    def find_shortest_path(
+        self, from_vertex: str, to_vertex: str
+    ) -> Optional[List[str]]:
+        if from_vertex not in self.vertices or to_vertex not in self.vertices:
+            return []
 
-        processed_ids = set()
-        prev_path_id_by_id = {}
-        queued_ids = deque(from_id)
+        if from_vertex == to_vertex:
+            return [to_vertex]
 
-        def restore_path(vertex_id: str) -> List[str]:
+        processed = set()
+        queued = deque(from_vertex)
+        prev_in_path_by_vertex = {}
+
+        def restore_path(vertex: str) -> List[str]:
             path = []
-            while vertex_id is not None:
-                path.append(vertex_id)
-                vertex_id = prev_path_id_by_id.get(vertex_id)
+            while vertex is not None:
+                path.append(vertex)
+                vertex = prev_in_path_by_vertex.get(vertex)
             path.reverse()
             return path
 
-        while queued_ids:
-            current_id = queued_ids.popleft()
-            processed_ids.add(current_id)
+        while queued:
+            current = queued.popleft()
+            processed.add(current)
 
-            if current_id not in neighbour_ids_by_id:
-                continue
-
-            neighbour_ids = neighbour_ids_by_id[current_id]
-            for neighbour_id in neighbour_ids:
-                if neighbour_id in processed_ids:
+            for neighbour in self.neighbours_by_vertex[current]:
+                if neighbour in processed:
                     continue
 
-                if neighbour_id == to_id:
-                    return restore_path(current_id) + [to_id]
+                if neighbour == to_vertex:
+                    return restore_path(current) + [to_vertex]
 
-                if neighbour_id not in prev_path_id_by_id:
-                    prev_path_id_by_id[neighbour_id] = current_id
+                if neighbour not in prev_in_path_by_vertex:
+                    prev_in_path_by_vertex[neighbour] = current
 
-                queued_ids.append(neighbour_id)
+                queued.append(neighbour)
 
         return None
