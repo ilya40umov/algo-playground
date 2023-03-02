@@ -12,7 +12,7 @@ Repo containing experiments with common algorithms and data structures.
 
 * [binary-search](python/binary-search)
 * [deque](python/deque)
-* [graph-bfs](python/graph-bfs)
+* [bfs](python/bfs)
 * [hashtable](python/hashtable)
 * [quick-sort](python/quick-sort)
 * [selection-sort](python/selection-sort)
