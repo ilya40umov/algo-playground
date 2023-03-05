@@ -50,3 +50,6 @@ clean:
 
 valgrind: $(BIN) 
 	valgrind -s --leak-check=full ./$<
+
+bear: clean
+	bear -- make all
