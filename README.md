@@ -4,10 +4,12 @@ Repo containing experiments with common algorithms and data structures.
 
 ## Implementations in C
 
-* [circular-queue](c/circular-queue) [[wiki](https://en.wikipedia.org/wiki/Circular_buffer)]
-* [hashtable](c/hashtable) [[wiki](https://en.wikipedia.org/wiki/Hash_table)]
-* [knapsack](c/knapsack) [[wiki](https://en.wikipedia.org/wiki/Knapsack_problem)]
-* [red-black-tree](c/red-black-tree) [[wiki](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree)]
+| Code                     | Wikipedia                                                              |
+|------------------------------------|------------------------------------------------------------------------|
+| [circular-queue](c/circular-queue) | [Circular buffer](https://en.wikipedia.org/wiki/Circular_buffer)       |
+| [hashtable](c/hashtable)           | [Hash table](https://en.wikipedia.org/wiki/Hash_table)                 |
+| [knapsack](c/knapsack)             | [Knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)     |
+| [red-black-tree](c/red-black-tree) | [Red black tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) |
 
 ## Implementations in Python
 
