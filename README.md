@@ -11,6 +11,7 @@ Repo containing experiments with common algorithms and data structures.
 | [knapsack](c/knapsack)             | [Knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)     |
 | [red-black-tree](c/red-black-tree) | [Red black tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) |
 
+
 ## Implementations in Python
 
 | Code                                   | Wikipedia                                                                        |
@@ -23,6 +24,16 @@ Repo containing experiments with common algorithms and data structures.
 | [hashtable](python/hashtable)          | [Hash table](https://en.wikipedia.org/wiki/Hash_table)                           |
 | [quick-sort](python/quick-sort)        | [Quicksort](https://simple.wikipedia.org/wiki/Quicksort)                         |
 | [selection-sort](python/selection-sort)| [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)                   |
+
+## Local Setup
+
+### C Libraries & Tools
+
+* [Criterion](https://github.com/Snaipe/Criterion) 
+* [Bear](https://github.com/rizsotto/Bear)
+* [Valgrind](https://valgrind.org/)
+
+NOTE: If you are installing libraries manually on Linux (e.g. not via the package manager), make sure to run `ldconfig`.
 
 ## Useful Resources
 
