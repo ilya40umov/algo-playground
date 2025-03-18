@@ -12,7 +12,10 @@
         "python": "/usr/bin/python3",
         "stopOnEntry": true,
         "console": "externalTerminal",
-        "debugOptions": []
+        "debugOptions": [],
+        "env": {
+          "PYTHONPATH": "${workspaceRoot}"
+        }
       }
     }
   }
