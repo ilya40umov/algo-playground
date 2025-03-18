@@ -6,7 +6,7 @@
 
 typedef struct ht_hashtable ht_hashtable;
 
-ht_hashtable *ht_create(size_t capacity);
+bool ht_init(ht_hashtable **t_ptr, size_t capacity);
 
 bool ht_free(ht_hashtable **t_ptr);
 

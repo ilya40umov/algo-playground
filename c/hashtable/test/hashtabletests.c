@@ -10,7 +10,7 @@
 static ht_hashtable *t;
 
 void setup(void) {
-  t = ht_create(CAPACITY);
+  ht_init(&t, CAPACITY);
 }
 
 void teardown(void) {
@@ -18,6 +18,15 @@ void teardown(void) {
 }
 
 Test(hashtabletests, put_not_existing, .init = setup, .fini = teardown) {
+  cr_expect(
+    ht_put(t, "Name", "Gandalf"),
+    "ht_put should return TRUE if adding key/value was successful"
+  );
+}
+
+Test(hashtabletests, put_existing, .init = setup, .fini = teardown) {
+  ht_put(t, "Name", "Gandalf");
+
   cr_expect(
     ht_put(t, "Name", "Gandalf"),
     "ht_put should return TRUE if adding key/value was successful"

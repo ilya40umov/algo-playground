@@ -2,12 +2,13 @@
 #include <stdlib.h>
 #include "hashtable.h"
 
-char *fmtbool(bool value);
+static char *fmtbool(bool value);
 
 int main(int argc, char **argv) {
   printf("Test #1:\n");
-  
-  ht_hashtable *t = ht_create(10);
+ 
+  ht_hashtable *t;
+  ht_init(&t, 10);
   printf("ht_put(Name,Zorro): %s\n", fmtbool(ht_put(t, "Name", "Zorro")));
   printf("ht_put(Age,23): %s\n", fmtbool(ht_put(t, "Age", "23")));
   printf("ht_put(Planet,Earth): %s\n", fmtbool(ht_put(t, "Planet", "Earth")));
@@ -20,12 +21,15 @@ int main(int argc, char **argv) {
   ht_free(&t);
 
   printf("\nTest #2:\n");
-  t = ht_create(20);
+  ht_init(&t, 20);
   int j = 0;
-  char key[20] = {0};
+  char key[15] = {0};
   key[0] = 'a';
   for (int i = 1; i < 50; i++) {
     printf("ht_put(%s): %s\n", key, fmtbool(ht_put(t, key, key)));
+    if (i % 2 == 0) {
+      printf("ht_remove(%s): %s\n", key, fmtbool(ht_remove(t, key)));
+    }
     if (key[j] == 'z') {
       j++;
       key[j] = 'a';
@@ -49,6 +53,6 @@ int main(int argc, char **argv) {
   return EXIT_SUCCESS;
 }
 
-char *fmtbool(bool value) {
+static char *fmtbool(bool value) {
   return value ? "true" : "false";
 }

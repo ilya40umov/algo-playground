@@ -19,18 +19,19 @@ struct ht_node {
 static unsigned long hash(const char *str);
 static const char *strclone(const char *str);
 
-ht_hashtable *ht_create(size_t capacity) {
+bool ht_init(ht_hashtable **t_ptr, size_t capacity) {
   ht_hashtable *t = malloc(sizeof(ht_hashtable));
   if (t == NULL) {
-    return NULL;
+    return false;
   }
   t->capacity = capacity;
   t->nodes = calloc(capacity, sizeof(ht_node*));
   if (t->nodes == NULL) {
     free(t);
-    return NULL;
+    return false;
   }
-  return t;
+  *(t_ptr) = t;
+  return true;
 }
 
 bool ht_free(ht_hashtable **t_ptr) {
