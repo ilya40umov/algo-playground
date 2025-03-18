@@ -3,7 +3,7 @@ package me.ilya40umov.algo.graph;
 import java.util.List;
 import java.util.Optional;
 
-class BreadthFirstSearchTest extends UndirectedShortestPathSearchTest {
+class DepthFirstSearchTest extends UndirectedShortestPathSearchTest {
 
     @Override
     protected Optional<List<String>> findShortestPath(
@@ -11,6 +11,6 @@ class BreadthFirstSearchTest extends UndirectedShortestPathSearchTest {
             String fromId,
             String toId
     ) {
-        return BreadthFirstSearch.findShortestPath(graph, fromId, toId);
+        return DepthFirstSearch.findShortestPath(graph, fromId, toId);
     }
 }
