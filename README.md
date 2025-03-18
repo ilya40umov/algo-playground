@@ -7,8 +7,6 @@ Repo containing experiments with common algorithms and data structures.
 ### Java
 
 * QuickSort
-* MergeSort
-* BFS
 * Dijkstra
 * Longest common substring / subsequence
 * Knapsack
