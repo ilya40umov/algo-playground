@@ -15,3 +15,6 @@ clean:
 
 mrproper: clean
 	rm -f main
+
+valgrind: main
+	valgrind -s --leak-check=full ./$<

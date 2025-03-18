@@ -17,9 +17,11 @@ bool rbt_contains(rbt_node *root, int value);
 
 void rbt_print_tree(rbt_node *root);
 
-rbt_node *rbt_insert(rbt_node **root, int value);
+bool rbt_insert(rbt_node **root, int value);
 
 bool rbt_remove(rbt_node **root, int value);
+
+void rbt_free_tree(rbt_node **root);
  
 #endif
 

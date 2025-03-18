@@ -28,5 +28,7 @@ int main(int argc, char **argv) {
   rbt_remove(&root, 9);
   rbt_print_tree(root);
 
+  rbt_free_tree(&root);
+
   return EXIT_SUCCESS;
 }
