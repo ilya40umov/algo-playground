@@ -2,16 +2,6 @@
 
 Repo containing experiments with common algorithms and data structures.
 
-## TODO
-
-### Java
-
-* Longest common substring / subsequence
-* Knapsack
-
-* AVL-Tree
-* Red-Black-Tree
-
 ## Local Setup
 
 ### C Libraries & Tools
