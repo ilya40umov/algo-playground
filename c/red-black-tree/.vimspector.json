@@ -4,7 +4,7 @@
       "adapter": "vscode-cpptools",
       "configuration": {
         "request": "launch",
-        "program": "${fileBasenameNoExtension}",
+        "program": "./bin/main",
         "args": [],
         "cwd": "${cwd}",
         "environment": [],

@@ -37,19 +37,7 @@ bool rbt_remove(rbt_node **root_ptr, int value) {
 }
 
 void rbt_free_tree(rbt_node **root_ptr) {
-  if (*root_ptr == NULL) {
-    return;
-  }
-  rbt_node **current_node_ptr = root_ptr;
-  rbt_node *current_node = *current_node_ptr;
-  if (current_node->left != NULL) {
-    rbt_free_tree(&current_node->left);
-  }
-  if (current_node->right != NULL) {
-    rbt_free_tree(&current_node->right);
-  }
-  free(current_node);
-  *current_node_ptr = NULL;
+  _rbt_free_tree(root_ptr);
 }
 
 // 
@@ -154,10 +142,10 @@ static void _rbt_free_tree(rbt_node **node_ptr) {
   }
   rbt_node *node = *node_ptr;
   if (node->left != NULL) {
-    rbt_free_tree(&node->left);
+    _rbt_free_tree(&node->left);
   }
   if (node->right != NULL) {
-    rbt_free_tree(&node->right);
+    _rbt_free_tree(&node->right);
   }
   free(node);
   *node_ptr = NULL;
