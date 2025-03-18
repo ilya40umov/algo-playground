@@ -2,7 +2,7 @@ import unittest
 from src import selection_sort
 
 
-class SelectionSortTest(unittest.TestCase):
+class TestSelectionSort(unittest.TestCase):
     def test_sort_works_for_empty_list(self):
         l = []
         selection_sort.sort(l)
