@@ -6,6 +6,7 @@ Repo containing experiments with common algorithms and data structures.
 
 * [circular-queue](c/circular-queue)
 * [hashtable](c/hashtable)
+* [knapsack](c/knapsack)
 * [red-black-tree](c/red-black-tree)
 
 ## Implementations in Python
