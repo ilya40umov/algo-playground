@@ -8,9 +8,11 @@ Repo containing experiments with common algorithms and data structures.
 
 * QuickSort
 * Dijkstra
+* A*
 * Longest common substring / subsequence
 * Knapsack
-* Red-Black-Tree?
+* AVL-Tree
+* Red-Black-Tree
 
 ## Local Setup
 

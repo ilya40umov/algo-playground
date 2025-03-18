@@ -2,7 +2,10 @@ package me.ilya40umov.algo.sorting;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Arrays;
+import java.util.Random;
 import java.util.function.Function;
+import java.util.stream.IntStream;
 
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
@@ -15,10 +18,20 @@ public abstract class BaseSortTest {
     }
 
     @Test
+    void sort_shouldReturnSortedArray_whenGivenLongRandomSequence() {
+        var r = new Random(123);
+        var unsortedArray = IntStream.generate(() -> r.nextInt(100)).limit(100).toArray();
+        var sortedArray = Arrays.copyOf(unsortedArray, unsortedArray.length);
+        Arrays.sort(sortedArray);
+
+        assertArrayEquals(sortedArray, sort.apply(unsortedArray));
+    }
+
+    @Test
     void sort_shouldReturnSortedArray_whenGivenUnsortedArrayOfEvenLength() {
         assertArrayEquals(
-                new int[]{1, 1, 1, 2, 2, 2, 3, 3},
-                sort.apply(new int[]{1, 2, 3, 1, 1, 3, 2, 2})
+                new int[]{1, 1, 1, 1, 2, 2, 2, 2, 3, 3, 3},
+                sort.apply(new int[]{1, 2, 3, 1, 2, 3, 1, 1, 3, 2, 2})
         );
     }
 
