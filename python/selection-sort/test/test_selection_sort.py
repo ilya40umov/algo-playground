@@ -1,4 +1,5 @@
 import unittest
+import random
 from src import selection_sort
 
 
@@ -27,6 +28,12 @@ class TestSelectionSort(unittest.TestCase):
         l = [75, 3, 15, 42, 9, 99]
         selection_sort.sort(l)
         self.assertSequenceEqual(l, [3, 9, 15, 42, 75, 99])
+
+    def test_sort_works_on_more_data(self):
+        random.seed(123)
+        l = [random.randint(1, 99) for i in range(1, 30)]
+        selection_sort.sort(l)
+        self.assertSequenceEqual(l, sorted(l))
 
 
 if __name__ == "__main__":

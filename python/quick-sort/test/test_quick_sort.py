@@ -1,4 +1,5 @@
 import unittest
+import random
 from src import quick_sort
 
 
@@ -27,6 +28,17 @@ class TestQuickSort(unittest.TestCase):
         l = [75, 3, 15, 42, 9, 99]
         quick_sort.sort(l)
         self.assertSequenceEqual(l, [3, 9, 15, 42, 75, 99])
+
+    def test_sort_works_for_list_consisting_of_same_values(self):
+        l = [4, 4, 4, 4, 4]
+        quick_sort.sort(l)
+        self.assertSequenceEqual(l, [4, 4, 4, 4, 4])
+
+    def test_sort_works_for_big_array(self):
+        random.seed(123)
+        l = [random.randint(1, 99) for i in range(1, 30)]
+        quick_sort.sort(l)
+        self.assertSequenceEqual(l, sorted(l))
 
 
 if __name__ == "__main__":

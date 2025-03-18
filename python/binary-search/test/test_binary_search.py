@@ -20,6 +20,10 @@ class TestBinarySearch(unittest.TestCase):
         self.assertEqual(binary_search.find([1, 2, 4, 5, 6], 5), 3)
         self.assertEqual(binary_search.find([1, 2, 4, 5, 6], 6), 4)
 
+    def test_find_works_on_bigger_list(self):
+        self.assertEqual(binary_search.find(list(range(0, 100)), 7), 7)
+        self.assertEqual(binary_search.find(list(range(0, 100)), 72), 72)
+
 
 if __name__ == "__main__":
     unittest.main()
