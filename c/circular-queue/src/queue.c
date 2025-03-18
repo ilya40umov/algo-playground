@@ -1,7 +1,7 @@
+#include "queue.h"
 #include <limits.h>
 #include <stdbool.h>
 #include <stdlib.h>
-#include "queue.h"
 
 #define QUEUE_EMPTY INT_MIN
 
@@ -31,9 +31,7 @@ void cq_free(cq_queue **q_ptr) {
   *q_ptr = NULL;
 }
 
-unsigned int cq_size(cq_queue *q) {
-  return q->size;
-}
+unsigned int cq_size(cq_queue *q) { return q->size; }
 
 bool cq_enqueue(cq_queue *q, int value) {
   if (q->size == q->capacity) {

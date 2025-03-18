@@ -1,7 +1,7 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <stdbool.h>
 #include "tree.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 int main(int argc, char **argv) {
   rbt_node *root = NULL;
@@ -27,11 +27,16 @@ int main(int argc, char **argv) {
   rbt_print(root);
 
   printf("\n");
-  printf("Searched for 1:  %s\n", rbt_contains(root, 1) != false ? "Found" : "Not Found");
-  printf("Searched for 7:  %s\n", rbt_contains(root, 7) != false ? "Found" : "Not Found");
-  printf("Searched for 13: %s\n", rbt_contains(root, 13) != false ? "Found" : "Not Found");
-  printf("Searched for 18: %s\n", rbt_contains(root, 18) != false ? "Found" : "Not Found");
-  printf("Searched for 24: %s\n", rbt_contains(root, 24) != false ? "Found" : "Not Found");
+  printf("Searched for 1:  %s\n",
+         rbt_contains(root, 1) != false ? "Found" : "Not Found");
+  printf("Searched for 7:  %s\n",
+         rbt_contains(root, 7) != false ? "Found" : "Not Found");
+  printf("Searched for 13: %s\n",
+         rbt_contains(root, 13) != false ? "Found" : "Not Found");
+  printf("Searched for 18: %s\n",
+         rbt_contains(root, 18) != false ? "Found" : "Not Found");
+  printf("Searched for 24: %s\n",
+         rbt_contains(root, 24) != false ? "Found" : "Not Found");
 
   printf("Removing a childless red node (11).\n");
   rbt_remove(&root, 11);
@@ -43,7 +48,7 @@ int main(int argc, char **argv) {
   rbt_remove(&root, 8);
   printf("Removing the numbers from 1 to 7.\n");
   for (int i = 1; i <= 7; ++i) {
-    rbt_remove(&root, i); 
+    rbt_remove(&root, i);
   }
   rbt_print(root);
 

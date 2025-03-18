@@ -1,12 +1,12 @@
+#include "hashtable.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "hashtable.h"
 
 static char *fmtbool(bool value);
 
 int main(int argc, char **argv) {
   printf("Test #1:\n");
- 
+
   ht_hashtable *t;
   ht_init(&t, 10);
   printf("ht_put(Name,Zorro): %s\n", fmtbool(ht_put(t, "Name", "Zorro")));
@@ -53,6 +53,4 @@ int main(int argc, char **argv) {
   return EXIT_SUCCESS;
 }
 
-static char *fmtbool(bool value) {
-  return value ? "true" : "false";
-}
+static char *fmtbool(bool value) { return value ? "true" : "false"; }

@@ -1,10 +1,10 @@
-#include <stdlib.h>
-#include <stdio.h>
-#include <string.h>
-#include <stdbool.h>
 #include "tree.h"
+#include <stdbool.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-enum rbt_node_color {BLACK, RED};
+enum rbt_node_color { BLACK, RED };
 
 struct rbt_node {
   int value;
@@ -12,15 +12,12 @@ struct rbt_node {
   rbt_node *parent, *left, *right;
 };
 
-// 
+//
 // Internal helper functions (definitions)
 //
 
-static bool _rbt_is_subtree_valid(
-  rbt_node *node, 
-  int encountered_blacks, 
-  int expected_blacks_at_leaf
-);
+static bool _rbt_is_subtree_valid(rbt_node *node, int encountered_blacks,
+                                  int expected_blacks_at_leaf);
 
 static bool _rbt_contains(rbt_node *node, int value);
 
@@ -32,17 +29,15 @@ static void _rbt_rotate(rbt_node **root_ptr, rbt_node *node);
 
 static bool _rbt_remove(rbt_node **root_ptr, rbt_node *node, int value);
 static void _rbt_remove_node(rbt_node **root_ptr, rbt_node *node);
-static void _rbt_resolve_double_black_child(
-  rbt_node **root_ptr, 
-  rbt_node *parent, 
-  bool is_left_child
-);
+static void _rbt_resolve_double_black_child(rbt_node **root_ptr,
+                                            rbt_node *parent,
+                                            bool is_left_child);
 static rbt_node *_rbt_in_order_predecessor(rbt_node *node);
 
 static void _rbt_free(rbt_node **node_ptr);
 
 //
-// Exposed red-black tree functions 
+// Exposed red-black tree functions
 //
 bool rbt_is_valid(rbt_node *root) {
   if (root == NULL) {
@@ -51,7 +46,7 @@ bool rbt_is_valid(rbt_node *root) {
   if (root->color == RED) {
     return false;
   }
-  
+
   rbt_node *node = root;
   int expected_blacks = 0;
   while (node != NULL) {
@@ -60,8 +55,8 @@ bool rbt_is_valid(rbt_node *root) {
     }
     node = node->left;
   }
-  return _rbt_is_subtree_valid(root->left, 1, expected_blacks)
-    && _rbt_is_subtree_valid(root->right, 1, expected_blacks);
+  return _rbt_is_subtree_valid(root->left, 1, expected_blacks) &&
+         _rbt_is_subtree_valid(root->right, 1, expected_blacks);
 }
 
 bool rbt_contains(rbt_node *root, int value) {
@@ -69,7 +64,8 @@ bool rbt_contains(rbt_node *root, int value) {
 }
 
 void rbt_print(rbt_node *root) {
-  printf("\nTree (valid read-black - %s):\n", rbt_is_valid(root) ? "Yes" : "No");
+  printf("\nTree (valid read-black - %s):\n",
+         rbt_is_valid(root) ? "Yes" : "No");
   _rbt_print(root, "");
   printf("\n");
 }
@@ -82,18 +78,13 @@ bool rbt_remove(rbt_node **root_ptr, int value) {
   return _rbt_remove(root_ptr, *root_ptr, value);
 }
 
-void rbt_free(rbt_node **root_ptr) {
-  _rbt_free(root_ptr);
-}
+void rbt_free(rbt_node **root_ptr) { _rbt_free(root_ptr); }
 
-// 
+//
 // Internal helper functions (implementations)
 //
-bool _rbt_is_subtree_valid(
-  rbt_node *node, 
-  int encountered_blacks, 
-  int expected_blacks_at_leaf
-) {
+bool _rbt_is_subtree_valid(rbt_node *node, int encountered_blacks,
+                           int expected_blacks_at_leaf) {
   if (node == NULL) {
     return encountered_blacks == expected_blacks_at_leaf;
   }
@@ -106,9 +97,12 @@ bool _rbt_is_subtree_valid(
   if (node->right != NULL && node->value > node->right->value) {
     return false;
   }
-  int new_encountered_blacks = encountered_blacks + (node->color == BLACK ? 1 : 0);
-  return _rbt_is_subtree_valid(node->left, new_encountered_blacks, expected_blacks_at_leaf) 
-    && _rbt_is_subtree_valid(node->right, new_encountered_blacks, expected_blacks_at_leaf);
+  int new_encountered_blacks =
+      encountered_blacks + (node->color == BLACK ? 1 : 0);
+  return _rbt_is_subtree_valid(node->left, new_encountered_blacks,
+                               expected_blacks_at_leaf) &&
+         _rbt_is_subtree_valid(node->right, new_encountered_blacks,
+                               expected_blacks_at_leaf);
 }
 
 static bool _rbt_contains(rbt_node *node, int value) {
@@ -118,7 +112,7 @@ static bool _rbt_contains(rbt_node *node, int value) {
   if (value == node->value) {
     return true;
   } else if (value < node->value) {
-    return rbt_contains(node->left, value); 
+    return rbt_contains(node->left, value);
   } else {
     return rbt_contains(node->right, value);
   }
@@ -145,7 +139,8 @@ static void _rbt_print(rbt_node *node, const char *prefix) {
   size_t ext_prefix_size = strlen(prefix) + 3 + value_len + strlen(VLINE) + 1;
   char *ext_prefix = malloc(sizeof(char) * ext_prefix_size);
 
-  snprintf(ext_prefix, ext_prefix_size, "%s%*s%s", prefix, 3 + value_len - 1, "", VLINE);
+  snprintf(ext_prefix, ext_prefix_size, "%s%*s%s", prefix, 3 + value_len - 1,
+           "", VLINE);
   _rbt_print(node->right, ext_prefix);
 
   printf("\n%s%*s%s", prefix, 3 + value_len - 1, " ", VLINE_END);
@@ -159,7 +154,7 @@ static void _rbt_print(rbt_node *node, const char *prefix) {
 static bool _rbt_insert(rbt_node **root_ptr, rbt_node *node, int value) {
   if (node != NULL) {
     if (node->value == value) {
-      return true; 
+      return true;
     }
     if (value < node->value && node->left != NULL) {
       return _rbt_insert(root_ptr, node->left, value);
@@ -260,7 +255,7 @@ static void _rbt_fix_after_insert(rbt_node **root_ptr, rbt_node *node) {
 
 static void _rbt_rotate(rbt_node **root_ptr, rbt_node *node) {
   rbt_node *x = node, *y = x->parent, *y_parent = y->parent;
-  if (x == y->left) { 
+  if (x == y->left) {
     // right rotate on x
     rbt_node *x_right = x->right;
     // make y x's right child
@@ -301,7 +296,7 @@ static bool _rbt_remove(rbt_node **root_ptr, rbt_node *node, int value) {
     return false;
   }
   if (value < node->value) {
-    return _rbt_remove(root_ptr, node->left, value); 
+    return _rbt_remove(root_ptr, node->left, value);
   }
   if (value > node->value) {
     return _rbt_remove(root_ptr, node->right, value);
@@ -318,8 +313,9 @@ static void _rbt_remove_node(rbt_node **root_ptr, rbt_node *node) {
     _rbt_remove_node(root_ptr, p);
   } else {
     // node has at most 1 child =>
-    //  * if 1 child, delete the node & promote the child 
-    //  * if no children, delete the node & if was black, introduce a double-black
+    //  * if 1 child, delete the node & promote the child
+    //  * if no children, delete the node & if was black, introduce a
+    //  double-black
     bool is_left_child = node->parent->left == node;
     rbt_node **prom_node_ptr;
     if (node->parent == NULL) {
@@ -332,7 +328,8 @@ static void _rbt_remove_node(rbt_node **root_ptr, rbt_node *node) {
     *prom_node_ptr = (node->left != NULL) ? node->left : node->right;
     if (*prom_node_ptr != NULL) {
       (*prom_node_ptr)->parent = node->parent;
-      (*prom_node_ptr)->color = (node->color == BLACK) ? BLACK : (*prom_node_ptr)->color;
+      (*prom_node_ptr)->color =
+          (node->color == BLACK) ? BLACK : (*prom_node_ptr)->color;
     } else if (node->parent != NULL && node->color == BLACK) {
       _rbt_resolve_double_black_child(root_ptr, node->parent, is_left_child);
     }
@@ -340,12 +337,10 @@ static void _rbt_remove_node(rbt_node **root_ptr, rbt_node *node) {
   }
 }
 
-static void _rbt_resolve_double_black_child(
-  rbt_node **root_ptr, 
-  rbt_node *parent, 
-  bool is_left_child
-) {
-  rbt_node *z = parent; // node's parent
+static void _rbt_resolve_double_black_child(rbt_node **root_ptr,
+                                            rbt_node *parent,
+                                            bool is_left_child) {
+  rbt_node *z = parent;                                       // node's parent
   rbt_node *y = is_left_child ? parent->right : parent->left; // node's sibling
   if (y->color == BLACK) {
     rbt_node *x = NULL; // y's red child, if any
@@ -377,7 +372,8 @@ static void _rbt_resolve_double_black_child(
       if (z->color == RED) {
         z->color = BLACK;
       } else if (z->parent != NULL) {
-        _rbt_resolve_double_black_child(root_ptr, z->parent, z->parent->left == z); 
+        _rbt_resolve_double_black_child(root_ptr, z->parent,
+                                        z->parent->left == z);
       }
     }
   } else {

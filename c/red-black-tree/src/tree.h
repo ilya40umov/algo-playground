@@ -16,5 +16,5 @@ bool rbt_insert(rbt_node **root_ptr, int value);
 bool rbt_remove(rbt_node **root_ptr, int value);
 
 void rbt_free(rbt_node **root_ptr);
- 
+
 #endif
