@@ -14,11 +14,11 @@ def sort(values: List[Any]) -> None:
             if values[start] > values[end - 1]:
                 swap(start, end - 1)
             return
-        
+
         # XXX pivot selection could be better
         pivot_index = start
         pivot_value = values[pivot_index]
-        
+
         print(pivot_value, values)
 
         i = start
@@ -31,7 +31,7 @@ def sort(values: List[Any]) -> None:
                 j -= 1
                 continue
             swap(i, j)
-        
+
         if values[pivot_index] > values[i]:
             swap(pivot_index, i)
 
