@@ -7,51 +7,51 @@
 
 #define MAX_CAPACITY 5
 
-static cq_queue queue;
+static cq_queue *q;
 
 void setup(void) {
-  cq_init(&queue, MAX_CAPACITY);
+  cq_init(&q, MAX_CAPACITY);
 }
 
 void teardown(void) {
-  cq_free(&queue);
+  cq_free(&q);
 }
 
 Test(queuetests, enqueue_on_empty, .init = setup, .fini = teardown) {
   cr_expect(
-    cq_enqueue(&queue, 42),
+    cq_enqueue(q, 42),
     "cq_enqueue should return TRUE if queue is not full yet"
   );
-  cr_expect(eq(int, queue.size, 1));
+  cr_expect(eq(int, cq_size(q), 1));
 }
 
 Test(queuetests, enqueue_on_full, .init = setup, .fini = teardown) {
   for (int i = 0; i < MAX_CAPACITY; i++) {
-    cq_enqueue(&queue, i);
+    cq_enqueue(q, i);
   }
 
   cr_expect(
-    not(cq_enqueue(&queue, 42)),
+    not(cq_enqueue(q, 42)),
     "cq_enqueue should return FALSE if queue is full"
   );
-  cr_expect(eq(int, queue.size, MAX_CAPACITY));
+  cr_expect(eq(int, cq_size(q), MAX_CAPACITY));
 }
 
 Test(queuetests, dequeue_on_empty, .init = setup, .fini = teardown) {
   cr_expect(
-    eq(int, cq_dequeue(&queue, NULL), INT_MIN),
+    eq(int, cq_dequeue(q, NULL), INT_MIN),
     "cq_dequeue should return INT_MIN if queue is empty"
   );
-  cr_expect(eq(int, queue.size, 0));
+  cr_expect(eq(int, cq_size(q), 0));
 }
 
 Test(queuetests, dequeue_on_full, .init = setup, .fini = teardown) {
-  cq_enqueue(&queue, 42);
-  cq_enqueue(&queue, 43);
+  cq_enqueue(q, 42);
+  cq_enqueue(q, 43);
 
   cr_expect(
-    eq(int, cq_dequeue(&queue, NULL), 42),
+    eq(int, cq_dequeue(q, NULL), 42),
     "cq_dequeue should return oldest value if queue is not empty"
   );
-  cr_expect(eq(int, queue.size, 1));
+  cr_expect(eq(int, cq_size(q), 1));
 }
