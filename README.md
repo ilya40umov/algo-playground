@@ -13,15 +13,16 @@ Repo containing experiments with common algorithms and data structures.
 
 ## Implementations in Python
 
-| Code                                    | Wikipedia                                                                        |
-|-----------------------------------------|----------------------------------------------------------------------------------|
-| [binary-search](python/binary-search)   | [Binary search algorithm](https://en.wikipedia.org/wiki/Binary_search_algorithm) |
-| [deque](python/deque)                   | [Deque](https://de.wikipedia.org/wiki/Deque)                                     |
-| [bfs](python/bfs)                       | [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)       |
-| [dijkstra](python/dijkstra)             | [Dijkstra's_algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)     |
-| [hashtable](python/hashtable)           | [Hash table](https://en.wikipedia.org/wiki/Hash_table)                           |
-| [quick-sort](python/quick-sort)         | [Quicksort](https://simple.wikipedia.org/wiki/Quicksort)                         |
-| [selection-sort](python/selection-sort) | [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)                   |
+| Code                                   | Wikipedia                                                                        |
+|----------------------------------------|----------------------------------------------------------------------------------|
+| [binary-search](python/binary-search)  | [Binary search algorithm](https://en.wikipedia.org/wiki/Binary_search_algorithm) |
+| [deque](python/deque)                  | [Deque](https://de.wikipedia.org/wiki/Deque)                                     |
+| [common-substr](python/common-substr)  | [Longest common substring](https://en.wikipedia.org/wiki/Longest_common_substring)|
+| [bfs](python/bfs)                      | [Breadth-first search](https://en.wikipedia.org/wiki/Breadth-first_search)       |
+| [dijkstra](python/dijkstra)            | [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)     |
+| [hashtable](python/hashtable)          | [Hash table](https://en.wikipedia.org/wiki/Hash_table)                           |
+| [quick-sort](python/quick-sort)        | [Quicksort](https://simple.wikipedia.org/wiki/Quicksort)                         |
+| [selection-sort](python/selection-sort)| [Selection sort](https://en.wikipedia.org/wiki/Selection_sort)                   |
 
 ## Useful Resources
 
