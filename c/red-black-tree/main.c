@@ -5,6 +5,8 @@
 
 int main(int argc, char **argv) {
   rbt_node *root = NULL;
+  rbt_print_tree(root);
+
   rbt_insert(&root, 7);
   rbt_insert(&root, 2);
   rbt_insert(&root, 3);
@@ -22,9 +24,9 @@ int main(int argc, char **argv) {
   printf("Searched for 12: %s\n", rbt_contains(root, 12) != false ? "Found" : "Not Found");
 
   printf("\n");
-  printf("Deleted 1, 5, 9\n");
-  rbt_remove(&root, 1);
-  rbt_remove(&root, 5);
+  printf("Deleted 3, 6, 9\n");
+  rbt_remove(&root, 3);
+  rbt_remove(&root, 6);
   rbt_remove(&root, 9);
   rbt_print_tree(root);
 
