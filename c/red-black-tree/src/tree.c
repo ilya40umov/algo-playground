@@ -8,6 +8,7 @@
 // Internal helper functions (definitions)
 //
 
+static bool _rbt_is_subtree_valid(rbt_node *node, int encountered_blacks, int expected_blacks);
 static bool _rbt_contains(rbt_node *node, int value);
 static void _rbt_print_tree(rbt_node *node, const char *prefix);
 static bool _rbt_insert(rbt_node **node_ptr, rbt_node *parent, int value);
@@ -17,13 +18,32 @@ static void _rbt_free_tree(rbt_node **node_ptr);
 //
 // Exposed red-black tree functions 
 //
+bool rbt_is_valid(rbt_node *root) {
+  if (root == NULL) {
+    return true;
+  }
+  if (root->color == RED) {
+    return false;
+  }
+  
+  rbt_node *node = root;
+  int expected_blacks = 0;
+  while (node != NULL) {
+    if (node->color == BLACK) {
+      expected_blacks++;
+    }
+    node = node->left;
+  }
+  return _rbt_is_subtree_valid(root->left, 1, expected_blacks)
+    && _rbt_is_subtree_valid(root->right, 1, expected_blacks);
+}
 
 bool rbt_contains(rbt_node *root, int value) {
   return _rbt_contains(root, value);
 }
 
 void rbt_print_tree(rbt_node *root) {
-  printf("\nTree:\n");
+  printf("\nTree (valid read-black - %s):\n", rbt_is_valid(root) ? "Yes" : "No");
   _rbt_print_tree(root, "");
   printf("\n");
 }
@@ -43,6 +63,17 @@ void rbt_free_tree(rbt_node **root_ptr) {
 // 
 // Internal helper functions (implementations)
 //
+bool _rbt_is_subtree_valid(rbt_node *node, int encountered_blacks, int expected_blacks) {
+  if (node == NULL) {
+    return encountered_blacks == expected_blacks;
+  }
+  if (node->color == RED && node->parent->color == RED) {
+    return false;
+  }
+  int new_encountered_blacks = encountered_blacks + (node->color == BLACK ? 1 : 0);
+  return _rbt_is_subtree_valid(node->left, new_encountered_blacks, expected_blacks) 
+    && _rbt_is_subtree_valid(node->right, new_encountered_blacks, expected_blacks);
+}
 
 static bool _rbt_contains(rbt_node *node, int value) {
   if (node == NULL) {

@@ -8,10 +8,13 @@ int main(int argc, char **argv) {
   rbt_print_tree(root);
 
   rbt_insert(&root, 7);
+  rbt_insert(&root, 9);
   rbt_insert(&root, 2);
   rbt_insert(&root, 3);
+
+  rbt_print_tree(root);
+
   rbt_insert(&root, 1);
-  rbt_insert(&root, 9);
   rbt_insert(&root, 5);
   rbt_insert(&root, 8);
   rbt_insert(&root, 6);

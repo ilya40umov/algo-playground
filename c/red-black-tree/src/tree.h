@@ -14,6 +14,8 @@ struct rbt_node {
   rbt_node *right;
 };
 
+bool rbt_is_valid(rbt_node *root);
+
 bool rbt_contains(rbt_node *root, int value);
 
 void rbt_print_tree(rbt_node *root);
