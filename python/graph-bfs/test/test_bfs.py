@@ -1,22 +1,21 @@
-from src.bfs import Graph, Vertex
+from src.bfs import Graph
 import unittest
 
 
 class TestBfs(unittest.TestCase):
     def setUp(self):
-        self.graph = Graph(
-            vertices=[
-                Vertex("A", ["B", "C", "G"]),
-                Vertex("B", ["D"]),
-                Vertex("C", ["E"]),
-                Vertex("D", ["E", "F"]),
-                Vertex("E", ["F"]),
-                Vertex("F", ["H"]),
-                Vertex("G", ["H"]),
-                Vertex("H", []),
-                Vertex("Z", []),
-            ]
-        )
+        graph = Graph(["A", "B", "C", "D", "E", "F", "G", "H", "Z"])
+        graph.add_edge("A", "B")
+        graph.add_edge("A", "C")
+        graph.add_edge("A", "G")
+        graph.add_edge("B", "D")
+        graph.add_edge("C", "E")
+        graph.add_edge("D", "E")
+        graph.add_edge("D", "F")
+        graph.add_edge("E", "F")
+        graph.add_edge("F", "H")
+        graph.add_edge("G", "H")
+        self.graph = graph
 
     def test_bfs_finds_shortest_path_from_a_to_a(self):
         self.assertListEqual(self.graph.find_shortest_path("A", "A"), ["A"])
