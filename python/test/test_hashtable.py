@@ -1,5 +1,6 @@
-from src import hashtable
 import unittest
+
+from src import hashtable
 
 
 class TestHashtable(unittest.TestCase):

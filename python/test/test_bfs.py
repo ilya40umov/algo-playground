@@ -1,5 +1,6 @@
-from src.bfs import Graph
 import unittest
+
+from src.bfs import Graph
 
 
 class TestBfs(unittest.TestCase):

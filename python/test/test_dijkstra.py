@@ -1,5 +1,6 @@
-from src.dijkstra import Graph
 import unittest
+
+from src.dijkstra import Graph
 
 
 class TestDijkstra(unittest.TestCase):

@@ -1,5 +1,5 @@
-from typing import TypeVar, Generic, Optional
 import sys
+from typing import Generic, Optional, TypeVar
 
 K = TypeVar("K")
 V = TypeVar("V")
@@ -7,9 +7,9 @@ V = TypeVar("V")
 
 class Hashtable(Generic[K, V]):
     def __init__(self, load_factor=0.7, capacity=10):
-        self.__load_factor = 0.7
+        self.__load_factor = load_factor
         self.__size = 0
-        self.__buckets = [[] for i in range(0, capacity)]
+        self.__buckets = [[] for _ in range(0, capacity)]
 
     def __getitem__(self, key: K) -> Optional[V]:
         idx = self.__key_to_idx(key)
@@ -32,7 +32,7 @@ class Hashtable(Generic[K, V]):
         if self.__size / len(self.__buckets) < self.__load_factor:
             return
         old_buckets = self.__buckets
-        self.__buckets = [[] for i in range(0, len(old_buckets) * 2)]
+        self.__buckets = [[] for _ in range(0, len(old_buckets) * 2)]
         for bucket in old_buckets:
             for k, v in bucket:
                 self.__put_if_not_present(k, v)

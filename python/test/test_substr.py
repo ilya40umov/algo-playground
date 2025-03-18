@@ -1,5 +1,6 @@
-from src.substr import longest_common_substring
 import unittest
+
+from src.substr import longest_common_substring
 
 
 class TestSubstr(unittest.TestCase):

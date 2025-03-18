@@ -1,5 +1,5 @@
 from dataclasses import dataclass
-from itertools import groupby, chain
+from itertools import chain, groupby
 from operator import attrgetter
 from typing import List, Optional, Tuple
 

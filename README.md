@@ -2,6 +2,18 @@
 
 Repo containing experiments with common algorithms and data structures.
 
+## TODO
+
+### Java
+
+* QuickSort
+* MergeSort
+* BFS
+* Dijkstra
+* Longest common substring / subsequence
+* Knapsack
+* Red-Black-Tree?
+
 ## Local Setup
 
 ### C Libraries & Tools

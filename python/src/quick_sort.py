@@ -1,4 +1,4 @@
-from typing import List, Any
+from typing import Any, List
 
 
 def sort(values: List[Any]) -> None:
