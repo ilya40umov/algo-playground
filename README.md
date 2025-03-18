@@ -7,6 +7,7 @@ Repo containing experiments with common algorithms and data structures.
 | Code                               | Wikipedia                                                              |
 |------------------------------------|------------------------------------------------------------------------|
 | [circular-queue](c/circular-queue) | [Circular buffer](https://en.wikipedia.org/wiki/Circular_buffer)       |
+| [common-subseq](c/common-subseq)   | [Longest common subsequence](https://en.wikipedia.org/wiki/Longest_common_subsequence) |
 | [hashtable](c/hashtable)           | [Hash table](https://en.wikipedia.org/wiki/Hash_table)                 |
 | [knapsack](c/knapsack)             | [Knapsack problem](https://en.wikipedia.org/wiki/Knapsack_problem)     |
 | [red-black-tree](c/red-black-tree) | [Red black tree](https://en.wikipedia.org/wiki/Red%E2%80%93black_tree) |
