@@ -35,8 +35,6 @@ public class DijkstraAlgorithm {
             T originId,
             T destId
     ) {
-        System.out.println("findShortestPath(" + originId + ", " + destId + ")");
-
         var weightedVertexById =
                 graph.getVertices()
                         .stream()
