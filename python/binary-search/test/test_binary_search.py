@@ -7,7 +7,7 @@ class TestBinarySearch(unittest.TestCase):
         self.assertIsNone(binary_search.find([], 33))
 
     def test_find_returns_none_if_value_not_present(self):
-        self.assertIsNone(binary_search.find([11, 22, 44, 55], 11))
+        self.assertIsNone(binary_search.find([11, 22, 44, 55], 5))
         self.assertIsNone(binary_search.find([11, 22, 44, 55], 33))
         self.assertIsNone(binary_search.find([11, 22, 44, 55], 70))
 

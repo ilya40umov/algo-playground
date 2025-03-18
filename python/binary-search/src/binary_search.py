@@ -2,7 +2,7 @@ from typing import List, Optional, Any
 from time import sleep
 
 
-def find(haystack: List[Any], needle: Any) -> Optional:
+def find(haystack: List[Any], needle: Any) -> Optional[Any]:
     if not haystack:
         return None
     start = 0
