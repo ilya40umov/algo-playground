@@ -1,0 +1,32 @@
+[project]
+description = "Playground for Algorithms"
+readme = "README.md"
+requires-python = ">=3.13,<3.14"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool]
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.dependencies]
+python = ">=3.13,<3.14"
+
+[tool.ruff]
+src = ["python"]
+
+[tool.ruff.lint]
+ignore = [
+    "C901", # too complex
+]
+select = [
+    "E", # pycodestyle errors
+    "W", # pycodestyle warnings
+    "F", # pyflakes
+    "I", # isort
+    "C", # flake8-comprehensions
+    "B", # flake8-bugbear
+]
