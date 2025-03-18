@@ -5,35 +5,41 @@
 
 int main(int argc, char **argv) {
   rbt_node *root = NULL;
-  rbt_print_tree(root);
+  rbt_print(root);
 
-  rbt_insert(&root, 7);
-  rbt_insert(&root, 9);
-  rbt_insert(&root, 2);
-  rbt_insert(&root, 3);
+  printf("\nAdding 1-10:\n");
+  for (int i = 1; i <= 10; i++) {
+    rbt_insert(&root, i);
+  }
+  rbt_print(root);
 
-  rbt_print_tree(root);
+  printf("\nAdding 10-20:\n");
+  for (int i = 20; i > 10; i--) {
+    rbt_insert(&root, i);
+  }
+  rbt_print(root);
 
-  rbt_insert(&root, 1);
-  rbt_insert(&root, 5);
-  rbt_insert(&root, 8);
-  rbt_insert(&root, 6);
-  rbt_insert(&root, 12);
-  rbt_print_tree(root);
+  printf("\nAdding 22, 23, 27, 29:\n");
+  rbt_insert(&root, 23);
+  rbt_insert(&root, 29);
+  rbt_insert(&root, 22);
+  rbt_insert(&root, 27);
+  rbt_print(root);
 
   printf("\n");
   printf("Searched for 1:  %s\n", rbt_contains(root, 1) != false ? "Found" : "Not Found");
-  printf("Searched for 10: %s\n", rbt_contains(root, 10) != false ? "Found" : "Not Found");
-  printf("Searched for 12: %s\n", rbt_contains(root, 12) != false ? "Found" : "Not Found");
+  printf("Searched for 7:  %s\n", rbt_contains(root, 7) != false ? "Found" : "Not Found");
+  printf("Searched for 13: %s\n", rbt_contains(root, 13) != false ? "Found" : "Not Found");
+  printf("Searched for 18: %s\n", rbt_contains(root, 18) != false ? "Found" : "Not Found");
+  printf("Searched for 24: %s\n", rbt_contains(root, 24) != false ? "Found" : "Not Found");
 
-  printf("\n");
-  printf("Deleted 3, 6, 9\n");
-  rbt_remove(&root, 3);
-  rbt_remove(&root, 6);
-  rbt_remove(&root, 9);
-  rbt_print_tree(root);
+  printf("\nDeleting numbers between 5 and 20\n");
+  for (int i = 5; i <= 20; i++) {
+    rbt_remove(&root, i);
+  }
+  rbt_print(root);
 
-  rbt_free_tree(&root);
+  rbt_free(&root);
 
   return EXIT_SUCCESS;
 }

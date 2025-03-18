@@ -5,7 +5,7 @@
 static rbt_node *root = NULL;
 
 void teardown(void) {
-  rbt_free_tree(&root);
+  rbt_free(&root);
 }
 
 Test(treetests, contains) {
