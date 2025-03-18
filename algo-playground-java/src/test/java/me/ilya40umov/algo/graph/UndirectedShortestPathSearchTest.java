@@ -1,5 +1,6 @@
 package me.ilya40umov.algo.graph;
 
+import me.ilya40umov.algo.graph.model.UndirectedGraph;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -17,25 +18,19 @@ public abstract class UndirectedShortestPathSearchTest {
 
     protected abstract Optional<List<String>> findShortestPath(
             UndirectedGraph<String> graph,
-            String fromId,
-            String toId
+            String originId,
+            String destId
     );
 
     private UndirectedGraph<String> graph;
 
     @BeforeEach
     void setUp() {
-        graph = new UndirectedGraph<>();
-        graph.addVertex("A");
-        graph.addVertex("B");
-        graph.addVertex("C");
-        graph.addVertex("D");
-        graph.addVertex("E");
-        graph.addVertex("F");
-        graph.addEdge("A", "B");
-        graph.addEdge("B", "C");
-        graph.addEdge("B", "D");
-        graph.addEdge("D", "E");
+        graph = new UndirectedGraph<String>()
+                .addEdge("A", "B")
+                .addEdge("B", "C")
+                .addEdge("B", "D")
+                .addEdge("D", "E");
     }
 
     @Test

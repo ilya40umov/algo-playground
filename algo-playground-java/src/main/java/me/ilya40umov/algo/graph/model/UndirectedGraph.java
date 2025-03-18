@@ -1,11 +1,11 @@
-package me.ilya40umov.algo.graph;
+package me.ilya40umov.algo.graph.model;
 
 import java.util.*;
 
 public class UndirectedGraph<T> {
-    static class Vertex<T> {
-        final T id;
-        final Set<Vertex<T>> adjacentVertices;
+    public class Vertex {
+        private final T id;
+        private final Set<Vertex> adjacentVertices;
 
         public Vertex(T identifier) {
             this.id = identifier;
@@ -16,7 +16,7 @@ public class UndirectedGraph<T> {
         @SuppressWarnings("unchecked")
         public boolean equals(Object o) {
             if (o == null || getClass() != o.getClass()) return false;
-            Vertex<T> vertex = (Vertex<T>) o;
+            Vertex vertex = (Vertex) o;
             return Objects.equals(id, vertex.id);
         }
 
@@ -24,32 +24,31 @@ public class UndirectedGraph<T> {
         public int hashCode() {
             return Objects.hashCode(id);
         }
+
+        public T getId() {
+            return id;
+        }
+
+        public Set<Vertex> getAdjacentVertices() {
+            return adjacentVertices;
+        }
     }
 
-    private final Map<T, Vertex<T>> vertexById;
+    private final Map<T, Vertex> vertexById;
 
     public UndirectedGraph() {
         vertexById = new LinkedHashMap<>();
     }
 
-    public void addVertex(T id) {
-        vertexById.putIfAbsent(id, new Vertex<>(id));
-    }
-
-    public void addEdge(T fromId, T toId) {
-        var from = vertexById.get(fromId);
-        if (from == null) {
-            throw new IllegalArgumentException("Vertex not found: " + fromId);
-        }
-        var to = vertexById.get(toId);
-        if (to == null) {
-            throw new IllegalArgumentException("Vertex not found: " + toId);
-        }
+    public UndirectedGraph<T> addEdge(T fromId, T toId) {
+        var from = vertexById.computeIfAbsent(fromId, Vertex::new);
+        var to = vertexById.computeIfAbsent(toId, Vertex::new);
         from.adjacentVertices.add(to);
         to.adjacentVertices.add(from);
+        return this;
     }
 
-    Vertex<T> getVertexById(T id) {
+    public Vertex getVertexById(T id) {
         return vertexById.get(id);
     }
 }
